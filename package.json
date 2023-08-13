@@ -1,0 +1,20 @@
+{
+  "name": "2dodesafiodiegoporto",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+
+  "scripts": {
+    "dev": "nodemon src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
