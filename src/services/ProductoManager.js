@@ -1,18 +1,21 @@
 
 import { promises as fs} from 'fs'
-const path = './productos.json'
+import config from '../config.js'  
+
 
 
 class ProductManager {
     constructor() {
         this.products = []
+        this.path= config.PRODUCTS_FILE_PATH
     }
     getProducts = async () => {
-        const prods = JSON.parse ( await fs.readFile (path, 'utf-8'))
+        const prods = JSON.parse ( await fs.readFile (this.path, 'utf-8'))
         console.log(prods)
+        return prods
     }
     addProduct = async (product) => {
-        const prods = JSON.parse ( await fs.readFile (path, 'utf-8'))
+        const prods = JSON.parse ( await fs.readFile (this.path, 'utf-8'))
         const producto = prods.find (prod => prod.id === product.id)
     
         if (producto){
@@ -20,7 +23,7 @@ class ProductManager {
         }
         else {
             prods.push(product)
-            await fs.writeFile (path ,JSON.stringify(prods))
+            await fs.writeFile (this.path ,JSON.stringify(prods))
         }
       
     }
@@ -31,20 +34,21 @@ class ProductManager {
         } else {
             console.log ("Producto no encontrado")
         }
+        return prod
     }
     deleteProduct = async (id) => {
-        const prods = JSON.parse ( await fs.readFile (path, 'utf-8'))
+        const prods = JSON.parse ( await fs.readFile (this.path, 'utf-8'))
         const producto = prods.find (prod => prod.id === id)
     
         if (producto){
-            await fs.writeFile (path ,JSON.stringify(prods.filter(prod => prod.id != id)))
+            await fs.writeFile (this.path ,JSON.stringify(prods.filter(prod => prod.id != id)))
     
         } else {
             console.log ("producto no encontrado")
         }
     }
     updateProduct = async (id, product)=> {
-        const prods = JSON.parse ( await fs.readFile (path, 'utf-8'))
+        const prods = JSON.parse ( await fs.readFile (this.path, 'utf-8'))
         const indice = prods.findIndex (prod => prod.id === id)
     
         if (indice != -1){
@@ -55,7 +59,7 @@ class ProductManager {
            prods[indice].stock= product.stock
            prods[indice].thumbnail= product.thumbnail
             
-           await fs.writeFile (path ,JSON.stringify(prods))
+           await fs.writeFile (this.path ,JSON.stringify(prods))
          } 
          else {
         console.log("producto no encontrado")
