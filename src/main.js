@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import ProductManager from "./services/ProductoManager.js";
 import config from "./config.js";
 
@@ -8,7 +8,7 @@ const productManager = new ProductManager (PRODUCTS_FILE_PATH)
 const app = express();
 
 
-app.get('/products/', async (req, res) => {
+app.get('/products', async (req, res) => {
     const products = await productManager.getProducts();
     const {limit} = req.query;
 
@@ -33,3 +33,7 @@ app.get('/products/:pid', async (req, res) => {
 
     res.send(product);
 })
+
+
+const server = app.listen(config.PORT, () => { console.log(`Servidor escuchando en puerto ${config.PORT}`)});
+server.on('error', error => console.log('Error al iniciar el servidor:', error.message));

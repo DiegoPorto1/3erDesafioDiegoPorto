@@ -70,7 +70,7 @@
 		"code": "F012K",
 		"stock": 150,
 		"id": 8
-	}
+	},
     {
 		"title": "Durazno",
 		"description": "Aunque su nombre lo niegue, estan blandos.",
@@ -79,7 +79,7 @@
 		"code": "F013DZ",
 		"stock": 15,
 		"id": 9
-	}
+	},
     {
 		"title": "Sandia",
 		"description": "Sabrosa.",
